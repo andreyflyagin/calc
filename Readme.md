@@ -1,7 +1,7 @@
 # Calculator
 
 ```shell
-    docker up --build
+    docker-compose up --build calc
     time curl  "http://127.0.0.1:8080/api/v1/convert?from=USD&to=USDT&amount=112321321"
 ```
 
