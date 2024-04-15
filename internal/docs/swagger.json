@@ -1,0 +1,103 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "Calculator.",
+        "title": "Calculator",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/api/v1/convert": {
+            "get": {
+                "description": "get conversion",
+                "consumes": [
+                    "*/*"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "convert"
+                ],
+                "summary": "get conversion",
+                "parameters": [
+                    {
+                        "maxLength": 50,
+                        "minLength": 2,
+                        "type": "string",
+                        "description": "symbol base",
+                        "name": "from",
+                        "in": "query"
+                    },
+                    {
+                        "maxLength": 50,
+                        "minLength": 2,
+                        "type": "string",
+                        "description": "symbol quote",
+                        "name": "to",
+                        "in": "query"
+                    },
+                    {
+                        "type": "number",
+                        "description": "amount",
+                        "name": "amount",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.Conversion"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.Conversion": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "base": {
+                    "type": "string"
+                },
+                "quote": {
+                    "type": "string"
+                },
+                "rate": {
+                    "type": "number"
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}
